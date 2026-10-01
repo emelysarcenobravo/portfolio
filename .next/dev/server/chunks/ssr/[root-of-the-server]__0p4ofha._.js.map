@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 10, "column": 0}, "map": {"version":3,"sources":["file:///Users/emely/Desktop/Emely/Portfolio/portfolio/app/page.tsx"],"sourcesContent":["export default function Home(){\n    return(\n        <main>\n            <h1>My Portfolio</h1>\n            <p>Welcome to my portfolio</p>\n        </main>\n    );\n}"],"names":["Home"],"mappings":";;;;;;AAAe,SAASA;IACpB,qBACI,8OAAC;;0BACG,8OAAC;0BAAG;;;;;;0BACJ,8OAAC;0BAAE;;;;;;;;;;;;AAGf"}}]
+}
