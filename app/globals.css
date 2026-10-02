@@ -1,0 +1,115 @@
+@import "tailwindcss";
+
+/* ---------- Color Tokens ---------- */
+
+:root {
+  --paper: #FFF9F5;
+  --paper-raised: #FFFFFF;
+  --tint: #FFE8EF;
+
+  --ink: #241525;
+  --ink-muted: #675568;
+
+  --rule: #E8D4DE;
+
+  --accent: #C13D73;
+  --accent-2: #F07C5A;
+
+  color-scheme: light;
+}
+
+/* ---------- Dark Mode ---------- */
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #17101A;
+    --paper-raised: #241722;
+    --tint: #321B2A;
+
+    --ink: #FFF4F7;
+    --ink-muted: #D0B9C5;
+
+    --rule: #493240;
+
+    --accent: #F28AB5;
+    --accent-2: #FF9A78;
+
+    color-scheme: dark;
+  }
+}
+
+/* ---------- Manual Dark Mode ---------- */
+
+:root[data-theme="dark"] {
+  --paper: #17101A;
+  --paper-raised: #241722;
+  --tint: #321B2A;
+
+  --ink: #FFF4F7;
+  --ink-muted: #D0B9C5;
+
+  --rule: #493240;
+
+  --accent: #F28AB5;
+  --accent-2: #FF9A78;
+
+  color-scheme: dark;
+}
+
+/* ---------- Tailwind Theme ---------- */
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-paper-raised: var(--paper-raised);
+  --color-tint: var(--tint);
+
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+
+  --color-rule: var(--rule);
+
+  --color-accent: var(--accent);
+  --color-accent-2: var(--accent-2);
+
+  --font-sans: var(--font-body);
+  --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-instrument-serif);
+}
+
+/* ---------- Base ---------- */
+
+html {
+  background: var(--paper);
+  color: var(--ink);
+  -webkit-text-size-adjust: 100%;
+  scroll-padding-top: 6rem;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+/* Text selection */
+
+::selection {
+  background: var(--accent);
+  color: #FFFFFF;
+}
+
+/* Keyboard focus */
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Smooth scrolling */
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
