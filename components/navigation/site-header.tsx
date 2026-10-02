@@ -28,7 +28,6 @@ export function SiteHeader(){
                     ))}
                 </ul>
             </nav>
-
          </div>
         </Container>
         </header>

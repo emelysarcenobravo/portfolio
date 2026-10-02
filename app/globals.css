@@ -1,5 +1,19 @@
 @import "tailwindcss";
 
+/* ---------- Theme Variant ---------- */
+
+@custom-variant dark {
+  @media (prefers-color-scheme: dark) {
+    &:where(:root:not([data-theme="light"]), :root:not([data-theme="light"]) *) {
+      @slot;
+    }
+  }
+
+  &:where([data-theme="dark"], [data-theme="dark"] *) {
+    @slot;
+  }
+}
+
 /* ---------- Color Tokens ---------- */
 
 :root {
@@ -15,13 +29,24 @@
   --accent: #C13D73;
   --accent-2: #F07C5A;
 
+  /* Deep section */
+  --deep: #321B2A;
+
+  /* Lens colors */
+  --lens-engineering: #4263B8;
+  --lens-ai: #167A72;
+  --lens-design: #C85A3C;
+  --lens-marketing: #A87512;
+
+  --lens: var(--accent);
+
   color-scheme: light;
 }
 
 /* ---------- Dark Mode ---------- */
 
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --paper: #17101A;
     --paper-raised: #241722;
     --tint: #321B2A;
@@ -33,6 +58,13 @@
 
     --accent: #F28AB5;
     --accent-2: #FF9A78;
+
+    --deep: #321B2A;
+
+    --lens-engineering: #9DAEFF;
+    --lens-ai: #5FD4C8;
+    --lens-design: #FF9B7D;
+    --lens-marketing: #F2C65A;
 
     color-scheme: dark;
   }
@@ -53,7 +85,61 @@
   --accent: #F28AB5;
   --accent-2: #FF9A78;
 
+  --deep: #321B2A;
+
+  --lens-engineering: #9DAEFF;
+  --lens-ai: #5FD4C8;
+  --lens-design: #FF9B7D;
+  --lens-marketing: #F2C65A;
+
   color-scheme: dark;
+}
+
+/* ---------- Deep Theme Sections ---------- */
+
+.theme-deep {
+  --paper: var(--deep);
+  --paper-raised: color-mix(in oklab, var(--deep) 88%, white);
+  --tint: color-mix(in oklab, var(--deep) 85%, white);
+
+  --ink: #FFF4F7;
+  --ink-muted: #D0B9C5;
+  --rule: color-mix(in oklab, var(--deep) 72%, white);
+
+  --accent: #F28AB5;
+  --accent-2: #FF9A78;
+
+  --lens-engineering: #AAB9FF;
+  --lens-ai: #6EDDD3;
+  --lens-design: #FFA184;
+  --lens-marketing: #F5CE63;
+
+  --lens: var(--accent);
+
+  background: var(--paper);
+  color: var(--ink);
+}
+
+/* ---------- Active Lens ---------- */
+
+:root[data-lens="engineering"],
+:root[data-lens="engineering"] .theme-deep {
+  --lens: var(--lens-engineering);
+}
+
+:root[data-lens="ai"],
+:root[data-lens="ai"] .theme-deep {
+  --lens: var(--lens-ai);
+}
+
+:root[data-lens="design"],
+:root[data-lens="design"] .theme-deep {
+  --lens: var(--lens-design);
+}
+
+:root[data-lens="marketing"],
+:root[data-lens="marketing"] .theme-deep {
+  --lens: var(--lens-marketing);
 }
 
 /* ---------- Tailwind Theme ---------- */
@@ -70,6 +156,14 @@
 
   --color-accent: var(--accent);
   --color-accent-2: var(--accent-2);
+
+  --color-deep: var(--deep);
+  --color-lens: var(--lens);
+
+  --color-lens-engineering: var(--lens-engineering);
+  --color-lens-ai: var(--lens-ai);
+  --color-lens-design: var(--lens-design);
+  --color-lens-marketing: var(--lens-marketing);
 
   --font-sans: var(--font-body);
   --font-mono: var(--font-geist-mono);
@@ -101,7 +195,7 @@ body {
 /* Keyboard focus */
 
 :focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--lens);
   outline-offset: 3px;
   border-radius: 4px;
 }
@@ -111,5 +205,237 @@ body {
 @media (prefers-reduced-motion: no-preference) {
   html {
     scroll-behavior: smooth;
+  }
+}
+
+/* ---------- Decorative Helpers ---------- */
+
+/* Soft glow behind hero imagery */
+
+.glow {
+  background:
+    radial-gradient(
+      60% 55% at 30% 35%,
+      color-mix(in oklab, var(--accent) 45%, transparent),
+      transparent 70%
+    ),
+    radial-gradient(
+      55% 50% at 75% 70%,
+      color-mix(in oklab, var(--accent-2) 50%, transparent),
+      transparent 70%
+    );
+
+  filter: blur(28px);
+}
+
+/* Surface using the active lens */
+
+.lens-surface {
+  background: color-mix(
+    in oklab,
+    var(--lens) 10%,
+    var(--paper-raised)
+  );
+}
+
+/* Offset print-style shadow */
+
+.offset-shadow {
+  box-shadow:
+    10px 10px 0 0
+    color-mix(in oklab, var(--lens) 35%, transparent);
+}
+
+/* ---------- Lens-Driven Content ---------- */
+
+[data-lens-only] {
+  display: none;
+}
+
+:root:not([data-lens]) [data-lens-only="all"],
+:root[data-lens="all"] [data-lens-only="all"],
+:root[data-lens="engineering"] [data-lens-only="engineering"],
+:root[data-lens="ai"] [data-lens-only="ai"],
+:root[data-lens="design"] [data-lens-only="design"],
+:root[data-lens="marketing"] [data-lens-only="marketing"] {
+  display: revert;
+}
+
+/* ---------- Lens Transitions ---------- */
+
+@media (prefers-reduced-motion: no-preference) {
+  .lens-transition {
+    transition:
+      color 300ms ease,
+      background-color 300ms ease,
+      border-color 300ms ease,
+      box-shadow 300ms ease,
+      opacity 300ms ease;
+  }
+}
+
+/* ---------- Stage-Aware Color ---------- */
+
+[data-stage] {
+  --stage-on: 0;
+  --stage-base: var(--ink);
+}
+
+[data-stage][data-covered="false"] {
+  --stage-base: var(--rule);
+}
+
+:root[data-lens]:not([data-lens="all"])
+  [data-stage][data-covered="true"] {
+  --stage-base: var(--ink-muted);
+}
+
+:root[data-lens="engineering"] [data-stage="design"],
+:root[data-lens="engineering"] [data-stage="engineering"],
+:root[data-lens="ai"] [data-stage="engineering"],
+:root[data-lens="ai"] [data-stage="intelligence"],
+:root[data-lens="design"] [data-stage="people"],
+:root[data-lens="design"] [data-stage="design"],
+:root[data-lens="marketing"] [data-stage="people"],
+:root[data-lens="marketing"] [data-stage="intelligence"],
+:root[data-lens="marketing"] [data-stage="outcome"] {
+  --stage-on: 1;
+}
+
+/* A lens never highlights a stage the project did not involve */
+
+:root[data-lens]
+  [data-stage][data-covered="false"] {
+  --stage-on: 0;
+}
+
+.stage-ink {
+  color: color-mix(
+    in oklab,
+    var(--lens) calc(var(--stage-on) * 100%),
+    var(--stage-base)
+  );
+}
+
+.stage-fill {
+  background-color: color-mix(
+    in oklab,
+    var(--lens) calc(var(--stage-on) * 100%),
+    var(--stage-base)
+  );
+}
+
+.stage-border {
+  border-color: color-mix(
+    in oklab,
+    var(--lens) calc(var(--stage-on) * 100%),
+    var(--rule)
+  );
+}
+
+[data-stage][data-covered="false"] .stage-label {
+  color: var(--ink-muted);
+}
+
+/* ---------- Header Lens Control ---------- */
+
+:root[data-hero-lens-visible] .header-lens {
+  visibility: hidden;
+  opacity: 0;
+}
+
+@media (width < 48rem) {
+  :root[data-hero-lens-visible] .header-lens {
+    display: none;
+  }
+}
+
+/* ---------- Capability Tiles ---------- */
+
+[data-cap] {
+  --cap-on: 1;
+}
+
+:root[data-lens] [data-cap] {
+  --cap-on: 0;
+}
+
+:root[data-lens="all"] [data-cap],
+:root[data-lens="engineering"] [data-cap="engineering"],
+:root[data-lens="ai"] [data-cap="ai"],
+:root[data-lens="design"] [data-cap="design"],
+:root[data-lens="marketing"] [data-cap="marketing"] {
+  --cap-on: 1;
+}
+
+.cap-tile {
+  border-color: color-mix(
+    in oklab,
+    var(--col) calc(var(--cap-on) * 100%),
+    var(--rule)
+  );
+
+  background: color-mix(
+    in oklab,
+    var(--col) calc(var(--cap-on) * 14%),
+    var(--paper-raised)
+  );
+}
+
+.cap-ink {
+  color: color-mix(
+    in oklab,
+    var(--col) calc(var(--cap-on) * 100%),
+    var(--ink-muted)
+  );
+}
+
+/* ---------- Process Line ---------- */
+
+@media (prefers-reduced-motion: no-preference) {
+  .process-draw {
+    transform-origin: top;
+    animation:
+      draw-y 700ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+    animation-delay: calc(var(--i) * 110ms + 150ms);
+  }
+
+  .process-node {
+    animation:
+      node-in 400ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+    animation-delay: calc(var(--i) * 110ms + 150ms);
+  }
+
+  @media (width >= 40rem) {
+    .process-draw {
+      transform-origin: left;
+      animation-name: draw-x;
+    }
+  }
+}
+
+@keyframes draw-x {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+@keyframes draw-y {
+  from {
+    transform: scaleY(0);
+  }
+}
+
+@keyframes node-in {
+  from {
+    transform: scale(0);
+  }
+}
+
+/* ---------- Project Rows ---------- */
+
+@media (width >= 48rem) {
+  li:nth-child(even) > .project-row .project-preview {
+    order: 2;
   }
 }

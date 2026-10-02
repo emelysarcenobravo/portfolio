@@ -1,7 +1,7 @@
 import Image from "next/image";
-import headshot from "@/public/images/about/headshot.jpg";
+import headshot from "@/public/images/about/headshot.png";
 
-const ALT = "Emely Sarceno Bravo, smiling, in a black cardigan against a grey studio background.";
+const ALT = "Emely Sarceno Bravo, smiling, in a black cardigan against a gray studio background.";
 
 export function Portrait({
     variant, 
@@ -21,7 +21,9 @@ export function Portrait({
     }
     return (
         <div className={`relative overflow-hidden bg-tint ${
-            variant === "arch" ? "aspect-[4/5] rounded-t-full rounded-b-[2em]" : "aspect-[4/5] rounded-[2rem]"
+            variant === "arch" 
+            ? "aspect-[4/5] rounded-t-full rounded-b-[2em]" 
+            : "aspect-[4/5] rounded-[2rem]"
         } ${className}`}
         >
             <Image 
