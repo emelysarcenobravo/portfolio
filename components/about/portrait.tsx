@@ -22,8 +22,8 @@ export function Portrait({
     return (
         <div className={`relative overflow-hidden bg-tint ${
             variant === "arch" 
-            ? "aspect-[4/5] rounded-t-full rounded-b-[2em]" 
-            : "aspect-[4/5] rounded-[2rem]"
+            ? "aspect-4/5 rounded-t-full rounded-b-[2em]" 
+            : "aspect-4/5 rounded-4xl"
         } ${className}`}
         >
             <Image 
@@ -31,10 +31,11 @@ export function Portrait({
                 alt={ALT}
                 fill
                 priority={priority}
+                loading={priority ? "eager" : "lazy"}
                 placeholder="blur"
                 sizes="(min-width: 1024px) 28rem, (min-width: 640px) 50vw, 90vw"
                 className="object-cover object-[50%_22%]"
-            />
+        />
         </div>
     )
 

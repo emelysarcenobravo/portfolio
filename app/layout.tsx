@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist_Mono, Instrument_Serif, Plus_Jakarta_Sans } from "next/font/google";
 import { SiteFooter } from "@/components/navigation/site-footer";
 import { SiteHeader } from "../components/navigation/site-header";
+import { CustomCursor } from "@/components/ui/custom-cursor";
 import "./globals.css";
 
 
@@ -31,8 +32,10 @@ export default function RootLayout({
     <html
     lang="en"
     className={`${bodySans.variable} ${geistMono.variable} ${instrumentSerif.variable}`}
+    data-scroll-behavior="smooth"
 >
     <body>
+        <CustomCursor/>
             <SiteHeader/>
                 <main id="main" className="flex-1">
                     {children}

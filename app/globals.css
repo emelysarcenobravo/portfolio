@@ -439,3 +439,85 @@ body {
     order: 2;
   }
 }
+
+/* ---------- Custom Cursor ---------- */
+
+@media (pointer: fine) {
+  body {
+    cursor: default;
+  }
+
+  .custom-cursor {
+    position: fixed;
+    z-index: 9999;
+    width: 32px;
+    height: 32px;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition:
+      opacity 180ms ease,
+      width 180ms ease,
+      height 180ms ease;
+  }
+
+  .custom-cursor-visible {
+    opacity: 1;
+  }
+
+  .custom-cursor-dot {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 6px;
+    height: 6px;
+    border-radius: 9999px;
+    background: var(--accent);
+    transform: translate(-50%, -50%);
+    transition:
+      transform 180ms ease,
+      background-color 180ms ease;
+  }
+
+  .custom-cursor-ring {
+    position: absolute;
+    inset: 0;
+    border: 1.5px solid var(--accent);
+    border-radius: 9999px;
+    opacity: 0.65;
+    transition:
+      transform 180ms ease,
+      border-color 180ms ease,
+      opacity 180ms ease;
+  }
+
+  .custom-cursor-hover {
+    width: 44px;
+    height: 44px;
+  }
+
+  .custom-cursor-hover .custom-cursor-dot {
+    transform: translate(-50%, -50%) scale(0.65);
+  }
+
+  .custom-cursor-hover .custom-cursor-ring {
+    opacity: 1;
+    border-color: var(--accent-2);
+  }
+
+  /* Don't show the custom cursor while typing. */
+  input,
+  textarea {
+    cursor: text;
+  }
+
+  /* Respect reduced-motion preferences. */
+  @media (prefers-reduced-motion: reduce) {
+    .custom-cursor,
+    .custom-cursor-dot,
+    .custom-cursor-ring {
+      transition: none;
+    }
+  }
+}
+

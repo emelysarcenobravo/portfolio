@@ -41,6 +41,7 @@ export function Hero(){
             </Link>
             <Link
               href="/about"
+              scroll={true}
               className="group inline-flex items-center gap-2 rounded-full border border-ink/20 px-6 py-3 text-sm font-medium hover:border-ink"
             >
               More about me

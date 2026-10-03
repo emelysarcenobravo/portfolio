@@ -23,6 +23,11 @@ const PRINCIPLES: {
     lens: "engineering",
   },
   {
+    title: "Designing with people in mind",
+    body: "I want to understand who I’m designing for, what they need, and where the experience creates friction. Good design starts with people, not just the interface.",
+    lens: "design",
+  },
+  {
     title: "Explore what’s possible.",
     body: "I enjoy experimenting with AI and emerging technologies to understand what they can do, where they create value, and how they can become part of a thoughtful solution.",
     lens: "ai",
@@ -39,7 +44,7 @@ export default function AboutPage() {
   return (
     <>
       <section className="relative overflow-hidden">
-        <div aria-hidden className="glow absolute top-10 -left-40 -z-10 h-[32rem] w-[32rem] opacity-50" />
+        <div aria-hidden className="glow absolute top-10 -left-40 -z-10 h-128 w-lg opacity-50" />
         <Container className="grid items-center gap-12 pt-10 pb-20 md:grid-cols-12 md:pt-16">
           <div className="mx-auto w-full max-w-sm md:col-span-5 md:max-w-none">
             <Portrait variant="arch" priority className="offset-shadow lens-transition" />
@@ -78,7 +83,7 @@ export default function AboutPage() {
               <li
                 key={p.title}
                 style={{ "--col": `var(--lens-${p.lens})` } as React.CSSProperties}
-                className="rounded-3xl border-2 border-(--col) bg-[color-mix(in_oklab,var(--col)_12%,var(--paper-raised))] p-6 md:p-8"
+                className="rounded-3xl border-2 border-(--col) bg-[color-mix(in_oklab,var(--col)_10%,var(--paper-raised))] p-6 md:p-8"
               >
                 <span aria-hidden className="font-mono text-xs text-(--col)">
                   {String(i + 1).padStart(2, "0")} · {getLens(p.lens).label}
@@ -94,7 +99,7 @@ export default function AboutPage() {
 
     <section aria-labelledby="education-title" className="pt-20 md:pt-28">
         <Container>
-          <div className="grid gap-6 rounded-[2rem] bg-tint p-6 md:grid-cols-12 md:p-10">
+          <div className="grid gap-6 rounded-4xl bg-tint p-6 md:grid-cols-12 md:p-10">
             <div className="md:col-span-5">
               <p className="font-mono text-xs tracking-[0.2em] text-ink-muted uppercase">Education</p>
               <h2 id="education-title" className="mt-3 font-display text-4xl leading-tight md:text-5xl">
