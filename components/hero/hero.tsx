@@ -1,56 +1,51 @@
 import Link from "next/link";
-import { Portrait } from "@/components/about/portrait";
-import { ArrowDown, ArrowRight } from "@/components/ui/icons";
+import { ArrowRight } from "@/components/ui/icons";
 import { Container } from "@/components/ui/container";
+import { Squiggle } from "@/components/ui/squiggle";
 import { education } from "@/data/experience";
-import type { LensId } from "@/lib/lenses";
+import { IdBadge } from "./id-badge";
 
-export function Hero(){
-    return(
-        <section aria-labelledby="hero-title" className="relative overflow-hidden"> 
-        <Container className="grid items-center gap-12 pt-10 pb-20 md:pt-16 lg:grid-cols-12 lg:gap-16 lg:pb-28">
-            <div className="relative mx-auto w-full max-w-[18rem] sm:max-w-sm lg:col-span-5 lg:max-w-none">
-                <div aria-hidden className="glow absolute -inset-10 -z-10 opacity-70"/>
-                <Portrait variant="arch" priority className="offset-shadow lens-transition"/>
-            </div>
-
-
+export function Hero() {
+  return (
+    <section aria-labelledby="hero-title" className="dot-grid relative -mt-16 overflow-hidden pt-16">
+      <Container className="grid items-center gap-12 pt-10 pb-20 md:pt-16 lg:grid-cols-12 lg:gap-14 lg:pb-28">
+        <div className="mx-auto w-full max-w-68 pt-10 sm:max-w-xs lg:col-span-5 lg:max-w-sm lg:pt-0">
+          <IdBadge />
+        </div>
         <div className="lg:col-span-7">
-          <p className="inline-flex items-center gap-2 rounded-full bg-tint px-3 py-1.5 font-mono text-[0.7rem] tracking-[0.15em] text-ink-muted uppercase">
-            <span aria-hidden className="size-1.5 rounded-full bg-accent-2" />
-            {education.degree} · {education.minor} · San Francisco State University
-          </p>
+          <p className="font-hand text-3xl text-accent md:text-4xl">hi there, I’m</p>
           <h1
             id="hero-title"
-            className="mt-6 font-display text-[clamp(3rem,7vw,6.25rem)] leading-[0.92] tracking-[-0.01em] text-balance"
+            className="mt-1 text-6xl leading-[0.95] text-balance sm:text-7xl md:text-8xl lg:text-[6.5rem] xl:text-[7.5rem]"
           >
-            Hi, I’m Emely. I {" "} 
-            <em className="lens-transition text-lens"> turn ideas into experiences </em>
-            people can actually use
+            Emely <span className="text-accent italic">Sarceno</span> Bravo
           </h1>
-          <p className="mt-7 max-w-xl text-lg leading-relaxed text-ink-muted md:text-xl">
-            My work sits at the intersection of software engineering, AI, design, and marketing. I’m interested in the full journey: from understanding a problem and designing the experience to building the solution and measuring what happens next.
+          <p className="mt-7 font-display text-2xl leading-snug text-balance md:text-3xl">
+            I build digital experiences where technology meets <Squiggle>people</Squiggle>.
+          </p>
+          <p className="mt-5 max-w-xl text-lg leading-relaxed text-ink-muted md:text-xl">
+            {education.degree} with a {education.minor.replace("Minor", "minor")} at SF State. I work across software
+            engineering, AI, UX design and marketing, and I like projects that need all four.
           </p>
           <div className="mt-9 flex flex-wrap gap-3">
             <Link
-              href="#work"
-              className="group inline-flex items-center gap-2 rounded-full bg-ink px-6 py-3 text-sm font-medium text-paper transition-colors hover:bg-accent"
+              href="/work"
+              style={{ "--lift-rotate": "-2deg" } as React.CSSProperties}
+              className="lift group inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3.5 text-sm font-semibold text-on-accent"
             >
-              See the work
-              <ArrowDown className="size-4 transition-transform group-hover:translate-y-0.5 motion-reduce:transition-none" />
+              See my work
+              <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5 motion-reduce:transition-none" />
             </Link>
             <Link
               href="/about"
-              scroll={true}
-              className="group inline-flex items-center gap-2 rounded-full border border-ink/20 px-6 py-3 text-sm font-medium hover:border-ink"
+              style={{ "--lift-rotate": "2deg" } as React.CSSProperties}
+              className="lift inline-flex items-center gap-2 rounded-full border border-rule bg-paper-raised px-6 py-3.5 text-sm font-semibold"
             >
-              More about me
-              <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5 motion-reduce:transition-none" />
+              About me
             </Link>
           </div>
         </div>
-
-        </Container>
-        </section>
-    )
+      </Container>
+    </section>
+  );
 }

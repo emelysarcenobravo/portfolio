@@ -1,54 +1,76 @@
 import type { LensId } from "@/lib/lenses";
 
 export type Experience = {
-    org: string; 
-    role: string; 
-    period: string; 
-    summary: string; 
-    lenses: LensId[];
-    /* Case study slug */
-    project?: string; 
-}; 
+  org: string;
+  role: string;
+  period: string;
+  summary: string;
+  lenses: LensId[];
+  /** Case study slug, when one exists. */
+  project?: string;
+};
 
-/* Most recent are listed first */
+/** Newest first. */
 export const experience: Experience[] = [
-    {
-        org: "AI4ALL Ignite",
-        role: "Machine Learning and AI Fellow", 
-        period: "May - Aug 2026", 
-        summary: "Developed and evaluated three machine-learning models for phishing detection, achieving 99.28% accuracy with the strongest model. Built a Streamlit demonstration and examined the training data for potential sources of bias.",
-        lenses: ["ai", "engineering"],
-        project: "phishing-detection",
-    },
-    {
-        org: "Dev/Mission",
-        role: "Marketing Intern", 
-        period: "Jan - May 2026", 
-        summary: "Used data-informed campaigns to recruit 100+ trainees and 15+ volunteer mentors. Managed six email campaigns that generated 1,200+ opens and 160+ clicks while tracking website growth and audience engagement through Google Analytics.",
-        lenses: ["marketing", "design"],
-        project: "devmission",
-    }, 
-    {
-        org: "Latin American Teachers Association",
-        role: "Webmaster Intern",
-        period: "Jan - May 2025",
-        summary: "Integrated the Givebutter API to increase online donations by 2,600%, strengthened SEO to improve visibility by 135%, and iterated on the website experience to better support visitors.",
-        lenses: ["engineering", "design"],
-        project: "lata", 
-    }, 
+  {
+    org: "SFSU · CSC 648",
+    role: "Team Lead & Full-Stack Developer",
+    period: "Fall 2026",
+    summary:
+      "Leading a six-person team building GatorAid with Next.js and Supabase: coordinating front-end, back-end and AI work.",
+    lenses: ["build", "design", "ai"],
+    project: "gatoraid",
+  },
+  {
+    org: "AI4ALL Ignite",
+    role: "AI/ML Fellow",
+    period: "Summer 2026",
+    summary:
+      "Compared three machine-learning models for phishing detection (best: 99.28% accuracy), shipped a Streamlit demo, and audited the training data for bias.",
+    lenses: ["ai"],
+    project: "phishing-detection",
+  },
+  {
+    org: "Dev/Mission",
+    role: "Marketing Intern",
+    period: "Jan – May 2026",
+    summary:
+      "Recruited 100+ trainees and 15+ volunteer mentors with data-informed campaigns; ran 6 email campaigns (1,200+ opens, 160+ clicks) and tracked website growth in Google Analytics.",
+    lenses: ["marketing", "design"],
+    project: "devmission",
+  },
+  {
+    org: "Latin American Teachers Association",
+    role: "Webmaster & Marketing Intern",
+    period: "Jan 2025 – present",
+    summary:
+      "Integrated Givebutter’s API (+2,600% online donations), improved SEO (+135% visibility and student outreach), and iterated on an accessible UI. Now also designing event flyers and managing LATA’s LinkedIn.",
+    lenses: ["marketing", "build", "design"],
+    project: "lata",
+  },
+  {
+    org: "Management Leadership for Tomorrow",
+    role: "Career Preparation Fellow",
+    period: "Jan 2025 – present",
+    summary:
+      "Competitive 18-month professional-development program for high-achieving diverse talent: business case studies, leadership and technical training.",
+    lenses: ["build", "design"],
+  },
   {
     org: "Dev/Mission",
     role: "Technology Apprentice",
     period: "Sep – Dec 2024",
-    summary: "Completed a 12-week technical and career development program covering hardware, programming, IoT, web development, and IT fundamentals. Collaborated on hands-on projects and presented a team project exploring Green AI.",
-    lenses: ["engineering", "ai"],
+    summary:
+      "12-week program in hardware, programming and career development, with hands-on projects in IoT, web development and IT essentials, plus a team presentation on Green AI.",
+    lenses: ["build", "ai"],
     project: "green-ai",
   },
   {
     org: "Accenture · Learning to Lead Program",
     role: "Business Analyst",
     period: "Jun – Aug 2023",
-    summary: "Served as the team's ideator in developing and pitching DisneyVerse, an AR/VR concept designed to improve representation and guest engagement for an Accenture client.",
+    summary:
+      "As the team's ideator, helped develop and pitch DisneyVerse, an AR/VR concept to improve representation and guest engagement for an Accenture client.",
     lenses: ["design", "marketing"],
     project: "disneyverse",
   },
@@ -59,13 +81,19 @@ export const education = {
   degree: "B.S. Computer Science",
   minor: "Minor in Marketing",
   period: "Expected May 2027",
+  // Most impactful first.
   coursework: [
-    "Data Structures",
-    "Analysis of Algorithms",
-    "Web Software Development",
     "Software Engineering",
+    "Web Software Development",
+    "Human-Computer Interaction",
     "Artificial Intelligence",
     "Generative AI: Fundamentals & Applications",
-    "Marketing Principles",
+    "Operating Systems",
+    "Data Structures",
+    "Analysis of Algorithms",
+    "Programming Methodology",
+    "Discrete Mathematics",
+    "Principles of Marketing",
+    "Ethics, Communication, and Tools for Software Development (GWAR)",
   ],
 };

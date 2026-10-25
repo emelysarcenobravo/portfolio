@@ -1,60 +1,58 @@
+/**
+ * The vocabulary shared by the whole site:
+ * - STAGES: the steps a project moves through, used as chapter labels in case studies.
+ * - LENSES: the four kinds of work I do. They're the filters on the Work page and the
+ *   groups on the Skills page. (Called "lenses" because each one is a way of looking at the same work.)
+ */
+
 export const STAGES = [
-    { id: "problem", label: "Problem", verb: "Identify what needs to change" },
-    { id: "people", label: "People", verb: "Understand who it affects" },
-    { id: "design", label: "Design", verb: "Shape an intuitive solution" },
-    { id: "engineering", label: "Engineering", verb: "Turn ideas into working products"},
-    { id: "intelligence", label: "Data & AI", verb: "Use data and AI with purpose" },
-    { id: "outcome", label: "Outcome", verb: "Measure impact and tell the story" },
+  { id: "problem", label: "Problem" },
+  { id: "people", label: "People" },
+  { id: "design", label: "Design" },
+  { id: "build", label: "Build" },
+  { id: "intelligence", label: "Data & AI" },
+  { id: "outcome", label: "Outcome" },
 ] as const;
 
-export type StageId = (typeof STAGES)[number]["id"]
+export type StageId = (typeof STAGES)[number]["id"];
 
 export const LENSES = [
-    {
-        id: "engineering", 
-        label: "Engineering", 
-        question: "How was it engineered?",
-        focus: "Architecture, implementation, technical decisions, and development", 
-        stages: ["design", "engineering"],
-    },
-    {
-        id: "ai",
-        label: "AI",
-        question: "Where does intelligence fit?",
-        focus: "Models, data, evaluation, and meaningful human-AI interaction",
-        stages: ["engineering", "intelligence"],
-    },
-    {
-        id: "design",
-        label: "Design",
-        question: "Who is it for?",
-        focus: "User research, user flows, prototypes, visual design, and accessibility",
-        stages: ["people", "design", "outcome"],
-    },
-    {
-        id: "marketing", 
-        label: "Marketing", 
-        question: "Who did it reach and what changed?",
-        focus: "Audience research, campaigns, analytics, and measurable outcomes",
-        stages: ["people", "intelligence", "outcome"],
-    },
-] as const satisfies readonly {
-    id: string; 
-    label: string;
-    question: string;
-    focus: string; 
-    stages: readonly StageId[];
-}[];
+  {
+    id: "build",
+    label: "Software Engineering",
+    short: "Software",
+    blurb: "Full-stack apps, APIs, systems programming and team Git workflows.",
+  },
+  {
+    id: "ai",
+    label: "AI and Machine Learning",
+    short: "AI",
+    blurb: "Model comparison, evaluation, bias analysis and LLM-powered features.",
+  },
+  {
+    id: "design",
+    label: "UX and Design",
+    short: "UX and Design",
+    blurb: "Research, personas, prototypes and accessible, responsive interfaces.",
+  },
+  {
+    id: "marketing",
+    label: "Marketing and Data",
+    short: "Marketing",
+    blurb: "Campaigns, SEO, analytics and measuring what actually changed.",
+  },
+] as const;
 
 export type LensId = (typeof LENSES)[number]["id"];
-
+/** "all" means no filter. */
 export type LensState = LensId | "all";
 
 export const LENS_IDS = LENSES.map((l) => l.id) as LensId[];
+
 export function isLensId(value: unknown): value is LensId {
-    return typeof value === "string" && (LENS_IDS as string[]).includes(value);
+  return typeof value === "string" && (LENS_IDS as string[]).includes(value);
 }
 
-export function getLens(id: LensId){
-    return LENSES.find((l) => l.id === id);
+export function getLens(id: LensId) {
+  return LENSES.find((l) => l.id === id)!;
 }
