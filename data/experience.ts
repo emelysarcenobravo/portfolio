@@ -97,6 +97,8 @@ export const education = {
     "Operating Systems",
     "Data Structures",
     "Analysis of Algorithms",
+    "Machine Structures",
+    "Probability and Statistics with Computing",
     "Programming Methodology",
     "Discrete Mathematics",
     "Principles of Marketing",

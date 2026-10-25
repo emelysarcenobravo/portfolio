@@ -66,7 +66,7 @@ export const movieReviews: Project = {
       summary:
         "The final project for Software Development: a team-built, full-stack app where users register, log in, browse movies and leave ratings and reviews.",
       body: [
-        "The team split ownership by feature, so each of us owned specific endpoints and the screens that use them.",
+        "The team split ownership by feature, so each of us owned specific endpoints and the screens that use them. My teammates built browsing and movie details, reviews and ratings, and user profiles; I built search, adding movies and the top-rated list.",
       ],
     },
     design: {

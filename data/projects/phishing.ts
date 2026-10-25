@@ -16,11 +16,11 @@ export const phishing: Project = {
   hmw: "How might we catch phishing emails accurately, without flagging the people who simply write differently?",
   preview: {
     kind: "image",
-    src: "/images/work/ai4all-poster.png",
-    alt: "Research poster “Phishing Email Prediction Models: A Comparative Analysis of Logistic Regression, Naive Bayes, and BERT,” with sections on background, data, methodology, the models, results and next steps.",
+    src: "/images/work/ai4all-poster.jpg",
+    alt: "Research poster “Phishing Email Prediction Models” with methodology, model comparison charts, dataset composition and key takeaways.",
     width: 1536,
     height: 1024,
-    matte: "#001231",
+    matte: "linear-gradient(to bottom, #c8ccda 50%, #d9dee5 50%)",
     position: "50% 30%",
   },
   stack: ["Python", "scikit-learn", "pandas", "NumPy", "Hugging Face Transformers", "DistilBERT", "Streamlit"],
@@ -28,7 +28,7 @@ export const phishing: Project = {
     { label: "Live demo", href: "https://phishing-email-predictor-ml.streamlit.app/", kind: "demo" },
     {
       label: "Research poster",
-      href: "https://docs.google.com/presentation/d/1EljNeuASG15JnPzOaKmNEf_akLOSOzNbmGU54t6W_ro/edit?usp=sharing",
+      href: "https://docs.google.com/presentation/d/17QK_cO5B9MC6ut8yqIqerbolAExAoAJpqiEn5AQvHo4/edit?usp=sharing",
       kind: "design",
     },
     {
@@ -36,13 +36,14 @@ export const phishing: Project = {
       href: "https://docs.google.com/presentation/d/1cAEnQsrmyYBiYwIbXisz234soKgXjEnGFH2njkTOQxQ/edit",
       kind: "slides",
     },
-    { label: "Code on GitHub", href: "https://github.com/dhruvidarji1/Phishing-Email-Prediction-Models", kind: "code" },
+    { label: "Code on GitHub", href: "https://github.com/emelysarcenobravo/Phishing-Email-Prediction-Models", kind: "code" },
   ],
   contribution: [
     "Developed and evaluated the Multinomial Naive Bayes model in Python and scikit-learn: 96.03% accuracy and a 95.38% F1 score.",
     "Applied TF-IDF and feature engineering (email length, punctuation, URLs, sender domains, attachments) to extract predictive signals.",
     "Built and explained the class-distribution analysis that showed the dataset was imbalanced but still large enough for reliable training and testing.",
-    "Wrote the bias analysis: temporal, labeling, organisational, language and cultural bias in the training data.",
+    "Wrote the bias analysis: temporal, labeling, organizational, language and cultural bias in the training data.",
+    "Deployed the Streamlit app to Streamlit Community Cloud, so anyone can paste in an email and compare the three models’ predictions.",
     "Co-authored the research proposal and presented my sections in the team’s final presentation.",
   ],
   lenses: {
@@ -171,8 +172,8 @@ export const phishing: Project = {
   ],
   figures: [
     {
-      src: "/images/work/ai4all-poster.png",
-      alt: "Full research poster: background, dataset composition and sample emails, data preparation pipeline, engineered features, the three models, evaluation metrics, results table, accuracy chart, confusion matrices, conclusions and next steps.",
+      src: "/images/work/ai4all-poster.jpg",
+      alt: "Full research poster: introduction, essential question, methodology pipeline, models compared, results table and charts, feature engineering, preprocessing steps, limitations and technologies.",
       caption: "The team’s research poster for AI4ALL Ignite.",
       width: 1536,
       height: 1024,

@@ -6,7 +6,7 @@ export const translationQuiz: Project = {
   title: "TranslationQuiz: a Linux device driver that teaches Spanish",
   kicker: "Operating Systems · CSC 415",
   summary:
-    "A loadable Linux kernel module in C that runs an English–Spanish vocabulary quiz. Reading the device shows a question and your score, writing to it submits an answer, and ioctl switches the translation direction.",
+    "A Duolingo-inspired vocabulary quiz that runs inside the Linux kernel. Reading the device shows a question and your score, writing to it submits an answer, and ioctl switches between English→Spanish and Spanish→English.",
   order: 7,
   featured: false,
   period: "Spring 2026",
@@ -29,7 +29,8 @@ export const translationQuiz: Project = {
   ],
   contribution: [
     "Designed and wrote the TranslationQuiz character device driver: open, release, read, write and ioctl.",
-    "Wrote a user-space test program with a menu to answer questions, switch modes and quit.",
+    "Built the quiz logic inside the driver: word banks for both languages, a random question picker, an answer checker, and score and accuracy tracking.",
+    "Wrote a user-space test program with a menu to answer questions, switch modes and quit, and rejected out-of-range input.",
     "Documented how to build, load, use and unload the driver, with screenshots, in the project write-up.",
   ],
   lenses: {
@@ -57,7 +58,10 @@ export const translationQuiz: Project = {
     },
     people: {
       summary:
-        "I wanted something people could actually use, so I built a quiz for practicing English–Spanish vocabulary.",
+        "I wanted something people could actually use, so I built a quiz for practicing English–Spanish vocabulary, inspired by Duolingo.",
+      body: [
+        "Mode 0 asks you to translate an English word into Spanish; mode 1 asks for the English translation of a Spanish word. Each round gives four options, and your score and accuracy update after every answer.",
+      ],
     },
     design: {
       summary: "I mapped each Linux file operation to a quiz action, so using the device feels like playing a game.",
@@ -71,7 +75,7 @@ export const translationQuiz: Project = {
     },
     build: {
       summary:
-        "The module registers a character device, stores per-session state in a struct, and logs each step with printk so its behavior can be checked in the kernel log.",
+        "The module registers a character device with register_chrdev_region, stores per-session state in a struct, and logs each step with printk so its behavior can be checked in the kernel log.",
       body: [
         "Because kernel code can't trust user input, write copies at most 7 bytes into a kernel buffer, parses it with kstrtoint, and rejects anything outside 1–4. read builds its output with scnprintf and sends it back with copy_to_user.",
       ],
@@ -83,9 +87,19 @@ export const translationQuiz: Project = {
   },
   figures: [
     {
+      src: "/images/work/translation-quiz-switch-mode.png",
+      alt: "Entering 9, then 1, prints “Mode switched successfully!” and the next question asks to translate “Casa” with Cat, Dog, House and Apple as options.",
+      caption:
+        "Switching modes: entering 9 and choosing mode 1 calls ioctl, and the next question asks for the English translation of “Casa.”",
+      width: 926,
+      height: 1420,
+      stage: "design",
+    },
+    {
       src: "/images/work/translation-quiz.png",
       alt: "The test program asks for “Casa” and the answer 3 (House) is submitted; the next round asks for “Perro” and reports “Correct!”, score 2, 3 attempts and 66% accuracy.",
-      caption: "The user correctly chooses “House” as the English translation for “Casa,” and the quiz updates their score and overall accuracy.",
+      caption:
+        "The user correctly chooses “House” as the English translation for “Casa,” and the quiz updates their score and overall accuracy.",
       width: 832,
       height: 1286,
       stage: "build",

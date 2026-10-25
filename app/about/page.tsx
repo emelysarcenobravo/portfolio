@@ -43,10 +43,10 @@ export default function AboutPage() {
     <>
       <section className="dot-grid -mt-16 pt-16">
         <Container className="grid items-center gap-12 pt-10 pb-20 md:grid-cols-12 md:pt-16">
-          <div className="relative mx-auto w-full max-w-[19rem] sm:max-w-sm md:col-span-5 md:max-w-none">
+          <div className="relative mx-auto w-full max-w-76 sm:max-w-sm md:col-span-5 md:max-w-none">
             <div
               aria-hidden
-              className="absolute inset-4 translate-x-4 translate-y-4 rounded-t-full rounded-b-[2rem] bg-accent-soft"
+              className="absolute inset-4 translate-x-4 translate-y-4 rounded-t-full rounded-b-4xl bg-accent-soft"
             />
             <Portrait variant="arch" priority className="relative" />
           </div>
@@ -112,7 +112,7 @@ export default function AboutPage() {
 
       <section aria-labelledby="education-title" className="py-4">
         <Container>
-          <div className="dot-grid grid gap-6 rounded-[2rem] bg-accent-soft p-6 md:grid-cols-12 md:p-10">
+          <div className="dot-grid grid gap-6 rounded-4xl bg-accent-soft p-6 md:grid-cols-12 md:p-10">
             <div className="md:col-span-5">
               <p className="font-hand text-2xl leading-none text-accent">Education</p>
               <h2
