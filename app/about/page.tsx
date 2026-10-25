@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { MediaGrid } from "@/components/about/media-grid";
 import { Portrait } from "@/components/about/portrait";
-import { ArrowRight } from "@/components/ui/icons";
+import { ArrowRight, ArrowUpRight } from "@/components/ui/icons";
 import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Squiggle } from "@/components/ui/squiggle";
@@ -95,6 +96,20 @@ export default function AboutPage() {
         </Container>
       </section>
 
+      <section aria-labelledby="media-title" className="pb-16 md:pb-20">
+        <Container>
+          <SectionHeading id="media-title" eyebrow="In the spotlight">
+            Telling my story, out loud.
+          </SectionHeading>
+          <p className="-mt-4 mb-10 max-w-3xl text-lg leading-relaxed text-ink-muted md:-mt-6">
+            I’ve been asked to share my story on the news, on camera and on stage, for the programs that opened doors
+            for me. I believe in paying it forward: the people who invested in me deserve to see what
+            it made possible, and the next student deserves to know the door is open to them too.
+          </p>
+          <MediaGrid />
+        </Container>
+      </section>
+
       <section aria-labelledby="education-title" className="py-4">
         <Container>
           <div className="dot-grid grid gap-6 rounded-[2rem] bg-accent-soft p-6 md:grid-cols-12 md:p-10">
@@ -110,9 +125,7 @@ export default function AboutPage() {
                 {education.degree} <span className="text-ink-muted">·</span>{" "}
                 <span className="font-semibold text-accent">{education.minor}</span>
               </p>
-              <p className="mt-2 text-ink-muted">
-                {education.period}
-              </p>
+              <p className="mt-2 text-ink-muted">{education.period}</p>
             </div>
             <div className="md:col-span-7">
               <h3 className="font-hand text-2xl leading-none text-accent">Relevant coursework</h3>
@@ -170,10 +183,22 @@ export default function AboutPage() {
                           </li>
                         ))}
                       </ul>
+                      {item.post && (
+                        <a
+                          href={item.post.href}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="ml-auto inline-flex items-center gap-1.5 text-sm font-semibold text-accent hover:underline"
+                        >
+                          {item.post.label}
+                          <ArrowUpRight className="size-4" />
+                          <span className="sr-only">(LinkedIn, opens in a new tab)</span>
+                        </a>
+                      )}
                       {item.project && (
                         <Link
                           href={`/work/${item.project}`}
-                          className="group ml-auto inline-flex items-center gap-1.5 text-sm font-semibold text-accent"
+                          className={`group inline-flex items-center gap-1.5 text-sm font-semibold text-accent ${item.post ? "" : "ml-auto"}`}
                         >
                           Case study
                           <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5 motion-reduce:transition-none" />

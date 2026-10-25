@@ -15,16 +15,18 @@ export const translationQuiz: Project = {
   hmw: "How might we turn a required kernel-driver assignment into something people could actually use?",
   preview: {
     kind: "image",
-    src: "/images/work/translation-quiz.jpg",
-    alt: "Terminal running the TranslationQuiz test program: a word to translate, four options, feedback, score, attempts, accuracy, and a mode switch to Spanish-to-English.",
-    width: 1052,
-    height: 1612,
+    src: "/images/work/translation-quiz.png",
+    alt: "Terminal running the TranslationQuiz test program: a Spanish word to translate, four English options, feedback on the previous answer, score, attempts and accuracy.",
+    width: 832,
+    height: 1286,
     // A tall terminal screenshot reads better cropped to its top than shrunk to fit.
     fit: "cover",
     position: "50% 0%",
   },
   stack: ["C", "Linux kernel modules", "Character devices", "ioctl", "Makefile", "Ubuntu", "Git"],
-  links: [],
+  links: [
+    { label: "Project on GitHub", href: "https://github.com/emelysarcenobravo/translationquiz-driver", kind: "code" },
+  ],
   contribution: [
     "Designed and wrote the TranslationQuiz character device driver: open, release, read, write and ioctl.",
     "Wrote a user-space test program with a menu to answer questions, switch modes and quit.",
@@ -81,11 +83,11 @@ export const translationQuiz: Project = {
   },
   figures: [
     {
-      src: "/images/work/translation-quiz.jpg",
-      alt: "The test program: translate “Dog”, four Spanish options, feedback “Wrong!”, score 1, 2 attempts, 50% accuracy, then a switch to Spanish-to-English mode.",
-      caption: "Playing the quiz through the test program, including a mode switch via ioctl.",
-      width: 1052,
-      height: 1612,
+      src: "/images/work/translation-quiz.png",
+      alt: "The test program asks for “Casa” and the answer 3 (House) is submitted; the next round asks for “Perro” and reports “Correct!”, score 2, 3 attempts and 66% accuracy.",
+      caption: "The user correctly chooses “House” as the English translation for “Casa,” and the quiz updates their score and overall accuracy.",
+      width: 832,
+      height: 1286,
       stage: "build",
     },
     {

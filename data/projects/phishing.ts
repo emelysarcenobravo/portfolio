@@ -16,18 +16,19 @@ export const phishing: Project = {
   hmw: "How might we catch phishing emails accurately, without flagging the people who simply write differently?",
   preview: {
     kind: "image",
-    src: "/images/work/ai4all-poster.jpg",
-    alt: "Research poster “Phishing Email Prediction Models” with methodology, model comparison charts, dataset composition and key takeaways.",
+    src: "/images/work/ai4all-poster.png",
+    alt: "Research poster “Phishing Email Prediction Models: A Comparative Analysis of Logistic Regression, Naive Bayes, and BERT,” with sections on background, data, methodology, the models, results and next steps.",
     width: 1536,
     height: 1024,
-    matte: "linear-gradient(to bottom, #c8ccda 50%, #d9dee5 50%)",
+    matte: "#001231",
     position: "50% 30%",
   },
   stack: ["Python", "scikit-learn", "pandas", "NumPy", "Hugging Face Transformers", "DistilBERT", "Streamlit"],
   links: [
+    { label: "Live demo", href: "https://phishing-email-predictor-ml.streamlit.app/", kind: "demo" },
     {
       label: "Research poster",
-      href: "https://docs.google.com/presentation/d/17QK_cO5B9MC6ut8yqIqerbolAExAoAJpqiEn5AQvHo4/edit?usp=sharing",
+      href: "https://docs.google.com/presentation/d/1EljNeuASG15JnPzOaKmNEf_akLOSOzNbmGU54t6W_ro/edit?usp=sharing",
       kind: "design",
     },
     {
@@ -170,8 +171,8 @@ export const phishing: Project = {
   ],
   figures: [
     {
-      src: "/images/work/ai4all-poster.jpg",
-      alt: "Full research poster: introduction, essential question, methodology pipeline, models compared, results table and charts, feature engineering, preprocessing steps, limitations and technologies.",
+      src: "/images/work/ai4all-poster.png",
+      alt: "Full research poster: background, dataset composition and sample emails, data preparation pipeline, engineered features, the three models, evaluation metrics, results table, accuracy chart, confusion matrices, conclusions and next steps.",
       caption: "The team’s research poster for AI4ALL Ignite.",
       width: 1536,
       height: 1024,

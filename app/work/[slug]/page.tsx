@@ -275,15 +275,18 @@ function previewSrc(project: Project) {
 /** A tilted photo with a handwritten caption, pinned beside the hero window (wide screens only). */
 function Snapshot({ figure, side }: { figure: Figure; side: "left" | "right" }) {
   const caption = `the ${STAGES.find((s) => s.id === figure.stage)?.label.toLowerCase() ?? "work"}`;
+  // Keep the image's own shape so the whole screen shows; only very tall images get cropped from the top.
+  const ratio = Math.max(figure.width / figure.height, 4 / 5);
+  const landscape = ratio > 1.2;
   return (
     <figure
       aria-hidden
-      className={`absolute z-10 hidden w-44 bg-paper-raised p-2 pb-1 shadow-xl shadow-accent/20 xl:block ${
-        side === "left" ? "-top-8 -left-36 -rotate-6" : "-right-36 -bottom-10 rotate-5"
-      }`}
+      className={`absolute z-10 hidden bg-paper-raised p-2 pb-1 shadow-xl shadow-accent/20 xl:block ${
+        landscape ? "w-64" : "w-44"
+      } ${side === "left" ? "-top-8 -left-40 -rotate-6" : "-right-40 -bottom-10 rotate-5"}`}
     >
-      <div className="relative aspect-square overflow-hidden bg-tint">
-        <Image src={figure.src} alt="" fill sizes="11rem" className="object-cover object-top" />
+      <div style={{ aspectRatio: ratio }} className="relative overflow-hidden bg-tint">
+        <Image src={figure.src} alt="" fill sizes={landscape ? "16rem" : "11rem"} className="object-cover object-top" />
       </div>
       <figcaption className="py-1 text-center font-hand text-xl text-ink-muted">{caption}</figcaption>
     </figure>
